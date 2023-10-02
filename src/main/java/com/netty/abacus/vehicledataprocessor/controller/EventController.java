@@ -12,16 +12,12 @@ import com.netty.abacus.vehicledataprocessor.model.LocationEvent;
 import java.util.List;
 
 import com.netty.abacus.vehicledataprocessor.repository.SpeedEventRepository;
-import com.netty.abacus.vehicledataprocessor.service.DataProcessorService;
 import com.netty.abacus.vehicledataprocessor.repository.DoorEventRepository;
 import com.netty.abacus.vehicledataprocessor.repository.LocationEventRepository;
 
 @RestController
 @RequestMapping("/api/events")
 public class EventController {
-	
-	@Autowired
-	DataProcessorService dataProcessorService;
 
     @Autowired
     private SpeedEventRepository speedAlertEventRepository;
@@ -34,19 +30,16 @@ public class EventController {
 
     @GetMapping("/speed-alert")
     public List<SpeedAlertEvent> getAllSpeedAlertEvents() {
-    	dataProcessorService.dataProcessor();
         return speedAlertEventRepository.findAll();
     }
 
     @GetMapping("/door-open")
     public List<DoorOpenEvent> getAllDoorOpenEvents() {
-    	dataProcessorService.dataProcessor();
         return doorOpenEventRepository.findAll();
     }
 
     @GetMapping("/location")
     public List<LocationEvent> getAllLocationEvents() {
-    	dataProcessorService.dataProcessor();
         return locationEventRepository.findAll();
     }
 
